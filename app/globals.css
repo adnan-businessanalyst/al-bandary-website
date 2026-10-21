@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #070706;
+  --ink-2: #100e0b;
+  --ink-3: #1a1611;
+  --gold: #d4b07a;
+  --gold-deep: #b8894a;
+  --gold-soft: rgba(212, 176, 122, 0.18);
+  --cream: #f4eadc;
+  --sand: #c8bba8;
+  --muted: #8f877b;
+  --line: rgba(212, 176, 122, 0.22);
+  --glass: rgba(16, 13, 10, 0.55);
+  --glass-strong: rgba(10, 8, 6, 0.72);
+  --photo: #070706;
+  --on-photo: #f4eadc;
+  --on-gold: #14110d;
+  --hairline: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="light"] {
+  --ink: #f4efe6;
+  --ink-2: #fffdf8;
+  --ink-3: #efe6d6;
+  --gold: #a37532;
+  --gold-deep: #865d24;
+  --gold-soft: rgba(163, 117, 50, 0.14);
+  --cream: #1c1610;
+  --sand: #5a5146;
+  --muted: #7d7468;
+  --line: rgba(163, 117, 50, 0.24);
+  --hairline: rgba(28, 22, 16, 0.1);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-cream: var(--cream);
+  --color-sand: var(--sand);
+  --color-muted: var(--muted);
+  --color-photo: var(--photo);
+  --color-on-photo: var(--on-photo);
+  --color-on-gold: var(--on-gold);
+  --font-sans: var(--font-ibm);
+  --font-display: var(--font-kufi);
+  --font-en: var(--font-manrope);
+  --font-serif: var(--font-cormorant);
+}
+
+html,
+body {
+  background: var(--ink);
+  color: var(--cream);
+  min-height: 100%;
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 1.7rem !important;
+    line-height: 1.4 !important;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
+
+html[lang="ar"] body {
+  font-family: var(--font-ibm), "Segoe UI", sans-serif;
+}
+
+html[lang="en"] body {
+  font-family: var(--font-manrope), "Segoe UI", sans-serif;
+}
+
+html[lang="ar"] .font-display {
+  font-family: var(--font-kufi), var(--font-ibm), sans-serif;
+}
+
+html[lang="en"] .font-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-deep) var(--ink-2);
+}
+
+::selection {
+  background: rgba(212, 176, 122, 0.35);
+  color: #fff8ec;
+}
+
+html[data-theme="light"] ::selection {
+  color: #1c1610;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(184, 137, 74, 0.12), transparent 50%),
+    radial-gradient(900px 500px at -10% 20%, rgba(212, 176, 122, 0.06), transparent 45%),
+    var(--ink);
+}
+
+html[data-theme="light"] body {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(184, 137, 74, 0.1), transparent 50%),
+    radial-gradient(900px 500px at -10% 20%, rgba(212, 176, 122, 0.08), transparent 45%),
+    var(--ink);
+}
+
+.noise {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(28, 22, 16, 0.82), rgba(10, 8, 6, 0.88));
+  border: 1px solid rgba(212, 176, 122, 0.22);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(22px) saturate(1.3);
+}
+
+html[data-theme="light"] .glass {
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.88), rgba(244, 239, 230, 0.94));
+  border: 1px solid rgba(163, 117, 50, 0.22);
+  box-shadow: 0 16px 40px rgba(70, 50, 20, 0.08);
+}
+
+html[data-theme="light"] .noise {
+  opacity: 0.04;
+}
+
+html[data-theme="light"] .pattern-mask {
+  opacity: 0.05;
+}
+
+.gold-line {
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+html[dir="rtl"] .marquee-track {
+  animation-name: marquee-rtl;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1.08) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.18) translate3d(-1.5%, 1%, 0);
+  }
+}
+
+.kenburns {
+  animation: kenburns 22s ease-out forwards;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pulse-line {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.scroll-pulse {
+  animation: pulse-line 2.2s ease-in-out infinite;
+}
+
+.pattern-mask {
+  background-image: url("/pattern.svg");
+  background-size: 420px;
+  opacity: 0.07;
+}
+
+.product-card:hover .product-media {
+  transform: scale(1.06);
+}
+
+.product-media {
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
