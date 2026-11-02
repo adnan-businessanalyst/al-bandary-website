@@ -12,6 +12,7 @@ import { dictionary, type Dictionary, type Locale } from "./dictionary";
 
 type LanguageContextValue = {
   locale: Locale;
+  localeReady: boolean;
   dir: "rtl" | "ltr";
   t: Dictionary;
   setLocale: (locale: Locale) => void;
@@ -24,17 +25,19 @@ const STORAGE_KEY = "albandary-locale";
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("ar");
+  const [localeReady, setLocaleReady] = useState(false);
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search).get("lang");
     if (query === "en" || query === "ar") {
       setLocaleState(query);
-      return;
+    } else {
+      const saved = window.localStorage.getItem(STORAGE_KEY);
+      if (saved === "en" || saved === "ar") {
+        setLocaleState(saved);
+      }
     }
-    const saved = window.localStorage.getItem(STORAGE_KEY);
-    if (saved === "en" || saved === "ar") {
-      setLocaleState(saved);
-    }
+    setLocaleReady(true);
   }, []);
 
   useEffect(() => {
@@ -51,12 +54,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const value = useMemo<LanguageContextValue>(() => {
     return {
       locale,
+      localeReady,
       dir: locale === "ar" ? "rtl" : "ltr",
       t: dictionary[locale] as Dictionary,
       setLocale: setLocaleState,
       toggleLocale: () => setLocaleState((prev) => (prev === "ar" ? "en" : "ar")),
     };
-  }, [locale]);
+  }, [locale, localeReady]);
 
   return (
     <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>

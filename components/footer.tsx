@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 import { Ltr } from "./ltr";
+import { trackClickEmail, trackClickPhone } from "@/lib/analytics";
 import { useI18n } from "@/lib/language";
 
 export function Footer() {
-  const { t } = useI18n();
+  const { locale, t } = useI18n();
   const year = new Date().getFullYear();
 
   return (
@@ -49,10 +50,18 @@ export function Footer() {
           </div>
           <div>
             <p className="mb-4 text-xs uppercase tracking-[0.2em] text-gold">{t.nav.contact}</p>
-            <a href={`tel:${t.contact.phoneHref}`} className="block text-sand/85 hover:text-cream">
+            <a
+              href={`tel:${t.contact.phoneHref}`}
+              className="block text-sand/85 hover:text-cream"
+              onClick={() => trackClickPhone(locale)}
+            >
               <Ltr>{t.contact.phone}</Ltr>
             </a>
-            <a href={`mailto:${t.contact.email}`} className="mt-2 block text-sand/85 hover:text-cream">
+            <a
+              href={`mailto:${t.contact.email}`}
+              className="mt-2 block text-sand/85 hover:text-cream"
+              onClick={() => trackClickEmail(locale)}
+            >
               <Ltr>{t.contact.email}</Ltr>
             </a>
             <a

@@ -5,10 +5,11 @@ import { Ltr } from "./ltr";
 import { PageHero } from "./page-hero";
 import { Reveal } from "./reveal";
 import { images } from "@/lib/images";
+import { trackClickEmail, trackClickPhone } from "@/lib/analytics";
 import { useI18n } from "@/lib/language";
 
 export function ContactPage() {
-  const { t } = useI18n();
+  const { locale, t } = useI18n();
 
   return (
     <>
@@ -26,13 +27,21 @@ export function ContactPage() {
           </div>
           <div className="rounded-3xl border border-white/8 bg-ink-2 p-7">
             <p className="text-xs uppercase tracking-[0.2em] text-gold">{t.contact.phoneLabel}</p>
-            <a href={`tel:${t.contact.phoneHref}`} className="mt-3 block text-lg text-cream hover:text-gold">
+            <a
+              href={`tel:${t.contact.phoneHref}`}
+              className="mt-3 block text-lg text-cream hover:text-gold"
+              onClick={() => trackClickPhone(locale)}
+            >
               <Ltr>{t.contact.phone}</Ltr>
             </a>
           </div>
           <div className="rounded-3xl border border-white/8 bg-ink-2 p-7">
             <p className="text-xs uppercase tracking-[0.2em] text-gold">{t.contact.emailLabel}</p>
-            <a href={`mailto:${t.contact.email}`} className="mt-3 block text-lg text-cream hover:text-gold">
+            <a
+              href={`mailto:${t.contact.email}`}
+              className="mt-3 block text-lg text-cream hover:text-gold"
+              onClick={() => trackClickEmail(locale)}
+            >
               <Ltr>{t.contact.email}</Ltr>
             </a>
           </div>

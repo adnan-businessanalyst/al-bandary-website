@@ -1,0 +1,20 @@
+---
+description: 90-day reference for the Saudi Albandari GA4, Tag Manager, Google Ads, and PostHog plan. Read it before answering questions about setup steps, goals, hypotheses, scope, or the critique.
+alwaysApply: true
+---
+
+# Analytics plan
+
+Agreed 1 November 2026. Use it through at least 30 January 2027, and through day 90 after tracking goes live if that is later.
+
+Before answering anything about this analytics work, read `.cursor/analytics-90-day-plan.md` in this project and answer from that file. Read the Critique section with the steps, goals, and scope. When a step conflicts with a business-need action, follow the critique.
+
+Treat these questions as reads of that file:
+
+- "Give me details for step N" expands that numbered step. Keep the agreed setup.
+- "Elaborate on goals" uses the Goals, hypotheses, and Objectives sections.
+- "Let's discuss our scope" uses the Scope section and stays inside it unless the user changes it.
+
+Google tags load only through Tag Manager. PostHog uses its SDK. The inquiry-type, path, and page statements are hypotheses, not findings, until day 90 scores them. As of 1 November 2026 no step is done and no IDs have been sent.
+
+When that reference file changes, write a new human-readable copy in the project root: `analytics-90-day-plan-YYYY-MM-DD.md`. It matches the reference, with `Version: YYYY-MM-DD` as the first line. One file per calendar day. Further edits the same day replace that day's file so it holds the full plan after every change that day. Leave older dated files untouched. These root copies stay gitignored.
