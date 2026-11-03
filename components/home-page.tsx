@@ -145,7 +145,7 @@ export function HomePage() {
               >
                 <div className="relative h-80">
                   <Image
-                    src={[images.foodPack, images.coils, images.snacks, images.paper][i]}
+                    src={[images.bottles, images.foodPack, images.industrial][i]}
                     alt=""
                     fill
                     className="product-media object-cover"

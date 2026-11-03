@@ -8,13 +8,9 @@ import { images } from "@/lib/images";
 import { useI18n } from "@/lib/language";
 
 const productImages = [
-  images.foodPack,
-  images.coils,
-  images.snacks,
   images.bottles,
-  images.filmLine,
-  images.paper,
-  images.warehouse,
+  images.foodPack,
+  images.industrial,
 ];
 
 export function ProductsPage() {
