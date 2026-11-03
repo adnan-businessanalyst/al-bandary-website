@@ -11,6 +11,7 @@ type DataLayerPayload = {
   event: string;
   page_path: string;
   language: Locale;
+  inquiry_id?: string;
 };
 
 declare global {
@@ -70,5 +71,23 @@ function trackLead(event: "click_phone" | "click_email", language: Locale) {
   posthog.capture(event, {
     page_path: payload.page_path,
     language,
+  });
+}
+
+export function trackGenerateLead(language: Locale, inquiryId: string) {
+  if (!inquiryId) return;
+  initAnalytics();
+  const payload = {
+    event: "generate_lead",
+    page_path: window.location.pathname,
+    language,
+    inquiry_id: inquiryId,
+  };
+  pushDataLayer(payload);
+  if (!started) return;
+  posthog.capture("generate_lead", {
+    page_path: payload.page_path,
+    language,
+    inquiry_id: inquiryId,
   });
 }
